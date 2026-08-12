@@ -42,7 +42,14 @@ prediction = w * x + b
 
 #loss:
 loss = np.mean(prediction - y) ** 2
+print(f"The loss for this iteration is {loss}")
 
+gradient_weight = np.mean(2 * (prediction - y) *x)
+gradient_bias = np.mean(2* (prediction - y))
+
+#Gradient Descent:
+w = w - 0.1 * gradient_weight
+b = b - 0.1 * gradient_bias
 
 
 
