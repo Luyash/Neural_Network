@@ -63,7 +63,7 @@ print(f"The predicted function is y = {w:.4f}x + {b:.4f}")
 a = int(input("Enter the value of x --> "))
 print("="*70)
 ans = w*a + b
-print(f"The predicted value of y using y = {int(w)}x + {int(b)} is y = {ans}")
+print(f"The predicted value of y using y = {round(w)}x + {round(b)} is y = {round(ans)}")
 
 
 
