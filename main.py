@@ -37,4 +37,12 @@ y = np.array([
 w = 5     #weight
 b = 0.2   #bias
 
+#The main part:
+prediction = w * x + b
+
+#loss:
+loss = np.mean(prediction - y) ** 2
+
+
+
 
