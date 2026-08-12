@@ -5,7 +5,7 @@ import numpy as np
 
 
 #x values:
-x.np = ([
+x = np.array([
     0,
     1,
     2,
@@ -19,7 +19,7 @@ x.np = ([
 ])
 
 #y values:
-y.np = ([
+y = np.array([
     5,
     8,
     11,
@@ -31,5 +31,10 @@ y.np = ([
     29,
     32
 ])
+
+
+# Initial parameters:
+w = 5     #weight
+b = 0.2   #bias
 
 
