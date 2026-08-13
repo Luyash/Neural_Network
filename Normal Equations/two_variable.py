@@ -22,6 +22,28 @@ y = np.array([
 
 learning_rate = 0.01
 
+# Initial Weight and Bias:
+w1 = -0.6
+w2 = 6.67
+b = 3.1
+
 # Main loop
-for echos in range(801):
+for epoch in range(1, 801):
+    predicted = w1 * x1 + w2 * x2 + b
+
+    # Predicted is an array of predicted values and y is the actual array of values soo loss function
+    loss = np.mean((predicted - y) ** 2)
+
+    print(f"The loss of epoch number: {epoch} is --> {loss}")
+
+    w1_gradient = np.mean(2 * (predicted - y) * x1)
+    w2_gradient = np.mean(2 * (predicted - y) * x2)
+    b_gradient = np.mean(2 * (predicted - y))
+
     
+     
+    
+
+
+
+
