@@ -1,7 +1,7 @@
 import numpy as np
 import time
 
-# We will now try to predict the equation y = 3x + 2z + 1
+# We will now try to predict the equation y = 3x + 2z + 5
 # This has 2 unknown variables
 
 # Initializing values:
@@ -45,10 +45,6 @@ for epoch in range(1, 801):
     w1 = w1 - learning_rate * w1_gradient
     w2 = w2 - learning_rate * w2_gradient
     b = b - learning_rate * b_gradient
-
-    print("="*70)
-    print(f"Predicted equation is --> y = {w1}x1 + {w2}x2 + {b}")
-    print("="*70)
 
 print()
 print("Prediction is completed")
