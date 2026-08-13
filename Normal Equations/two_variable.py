@@ -46,10 +46,6 @@ for epoch in range(1, 801):
     w2 = w2 - learning_rate * w2_gradient
     b = b - learning_rate * b_gradient
 
-    print("="*70)
-    print(f"Predicted equation is --> y = {w1}x1 + {w2}x2 + {b}")
-    print("="*70)
-
 print()
 print("Prediction is completed")
 print("="*70)
