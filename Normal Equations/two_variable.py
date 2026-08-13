@@ -1,7 +1,7 @@
 import numpy as np
 import time
 
-# We will now try to predict the equation y = 3x + 2z + 1
+# We will now try to predict the equation y = 3x + 2z + 5
 # This has 2 unknown variables
 
 # Initializing values:
