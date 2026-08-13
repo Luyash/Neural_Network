@@ -5,7 +5,7 @@ import time
 # Lets try predict this using simplest form of NN
 
 
-#x values:
+# x values:
 x = np.array([
     0,
     1,
@@ -19,7 +19,7 @@ x = np.array([
     9
 ])
 
-#y values:
+# y values:
 y = np.array([
     5,
     8,
@@ -39,11 +39,11 @@ w = 5     #weight
 b = 0.2   #bias
 learning_rate = 0.01
 
-#The main part:
+# The main part:
 for epoch in range(1,801):
     prediction = w * x + b
 
-    #loss:
+    # loss:
     loss = np.mean((prediction - y) ** 2)
     print(f"The loss for epoch: {epoch} is {loss}")
     time.sleep(0.01)
@@ -51,7 +51,7 @@ for epoch in range(1,801):
     gradient_weight = np.mean(2 * (prediction - y) *x)
     gradient_bias = np.mean(2* (prediction - y))
 
-    #Gradient Descent:
+    # Gradient Descent:
     w = w - learning_rate * gradient_weight
     b = b - learning_rate * gradient_bias
 
