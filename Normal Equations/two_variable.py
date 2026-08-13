@@ -40,6 +40,10 @@ for epoch in range(1, 801):
     w2_gradient = np.mean(2 * (predicted - y) * x2)
     b_gradient = np.mean(2 * (predicted - y))
 
+    # Gradient_descent:
+    w1 = w1 - learning_rate * w1_gradient
+    w2 = w2 - learning_rate * w2_gradient
+    b = b - learning_rate * b_gradient
     
      
     
