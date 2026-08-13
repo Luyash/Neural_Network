@@ -33,7 +33,7 @@ for epoch in range(1, 801):
 
     # Predicted is an array of predicted values and y is the actual array of values soo loss function
     loss = np.mean((predicted - y) ** 2)
-
+    time.sleep(0.01)
     print(f"The loss of epoch number: {epoch} is --> {loss}")
 
     # Calculate Gradients:
