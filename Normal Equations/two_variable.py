@@ -62,13 +62,3 @@ print()
 result = w1 * a + w2 * c + b
 print(f"The value of y is --> {result} ")
 print("="*70)
-
-
-
-
-     
-    
-
-
-
-
