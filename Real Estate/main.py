@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from functions import relu
 
 
 # Take the pandas DataFrame called data and convert it into a NumPy array
@@ -31,6 +32,36 @@ X_train_scaled = (X_train - train_mean) / train_sd
 X_test_scaled = (X_test - train_mean) / train_sd
 
 # Okay now the training stuff below:
+
+
+# Initializing weights and biases:
+W1 = np.random.randn(6, 8)  # 6 rows and 8 columns not actual 6x8
+b1 = np.zeros(8)
+
+W2 = np.random.randn(8, 8) # This creates array of numpy with 8 row and 8 col
+b2 = np.zeros(8)
+
+W3 = np.random.randn(8, 1)
+b3 = np.zeros(1)
+
+learning_rate = 0.01
+
+# The main loop:
+
+for epoch in range (1,2001):
+    # Layer 1:
+    a = X_train_scaled @ W1 + b1
+    c = relu(a)
+
+    # Layer 2:
+    a = c @ W2 +b2
+    c = relu(a)
+
+    # Output:
+    predicted = c @ W3 + b3
+
+    
+
 
 
 
