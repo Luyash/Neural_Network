@@ -50,17 +50,23 @@ learning_rate = 0.01
 
 for epoch in range (1,2001):
     # Layer 1:
-    a = X_train_scaled @ W1 + b1
-    c = relu(a)
+    A1 = X_train_scaled @ W1 + b1
+    C1 = relu(A1)
 
     # Layer 2:
-    a = c @ W2 +b2
-    c = relu(a)
+    A2 = C1 @ W2 +b2
+    C2 = relu(A2)
 
     # Output:
-    predicted = c @ W3 + b3
+    predicted = C2 @ W3 + b3
 
-    
+    # Loss:
+    loss = np.mean((predicted - y_train) ** 2)
+
+    # Gradients:
+    gradient_weight = np.mean(2 * (predicted - y_train) *x)
+    gradient_bias = np.mean(2* (predicted - y_train))
+
 
 
 
