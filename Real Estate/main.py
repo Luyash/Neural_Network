@@ -19,5 +19,16 @@ longitude        = array[:, 6]
 price            = array[:, 7]
 
 
+# Splitting data to 80% train and 20% test:
+X_train = X[:80%]
+X_test = X[80%:]
+
+# Calculate mean, SD for Standardization:
+train_mean = X_train.mean(axis=0)
+train_sd = X_train.std(axis=0)
+
+# Standardize
+X_train_scaled = (X_train - train_mean) / train_sd
+X_test_scaled = (X_test - train_mean) / train_sd
 
 
