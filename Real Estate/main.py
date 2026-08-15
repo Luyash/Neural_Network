@@ -12,7 +12,7 @@ array = data.to_numpy()
 
 # Inputs and Targets
 X = array[:, 1:7]
-y = array[:, 7]
+y = array[:, 7:8]
 
 # Splitting the data into 80% training and 20% test
 split_index = int(len(X) * 0.8)  # Gives 80% vaneko kati ho vanera 
@@ -99,9 +99,9 @@ for epoch in range (1,2001):
     w1_gradient = X_train_scaled.T @ dA1
     b1_gradient = np.sum(dA1, axis=0)
 
-    # =====================
-    # UPDATE WEIGHTS
-    # =====================
+    # ==========================
+    # UPDATE WEIGHTS AND BIAS
+    # ==========================
 
     # Gradient Descent
     W3 = W3 - learning_rate * w3_gradient
@@ -112,7 +112,9 @@ for epoch in range (1,2001):
 
     W1 = W1 - learning_rate * w1_gradient
     b1 = b1 - learning_rate * b1_gradient
-    
+
+
+
 
 
 
