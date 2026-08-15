@@ -12,7 +12,13 @@ array = data.to_numpy()
 
 # Inputs and Targets
 X = array[:, 1:7]
-y = array[:, 7]
+y = array[:, 7:8]
+
+# Adding randomizer for the input data like biccha biccha bata 80% and 20%
+indices = np.random.permutation(len(X))
+
+X = X[indices]
+y = y[indices]
 
 # Splitting the data into 80% training and 20% test
 split_index = int(len(X) * 0.8)  # Gives 80% vaneko kati ho vanera 
@@ -35,20 +41,20 @@ X_test_scaled = (X_test - train_mean) / train_sd
 
 
 # Initializing weights and biases:
-W1 = np.random.randn(6, 8)  # 6 rows and 8 columns not actual 6x8
+W1 = np.random.randn(6, 8) * np.sqrt(2 / 6)  # Random values but around +-1
 b1 = np.zeros(8)
 
-W2 = np.random.randn(8, 8) # This creates array of numpy with 8 row and 8 col
+W2 = np.random.randn(8, 8) * np.sqrt(2 / 8) # This kind of initialization is called He Initialization
 b2 = np.zeros(8)
 
-W3 = np.random.randn(8, 1)
+W3 = np.random.randn(8, 1) * np.sqrt(2 / 8) # This is good for Relu activation function
 b3 = np.zeros(1)
 
-learning_rate = 0.01
+learning_rate = 0.001
 
 # The main loop:
 
-for epoch in range (1,2001):
+for epoch in range (1,20001):
 
     # =====================
     # FORWARD PROPAGATION
@@ -67,7 +73,7 @@ for epoch in range (1,2001):
 
     # Loss layer 3:
     loss = np.mean((predicted - y_train) ** 2)
-    print(f"The loss of epoch no: {epoch} is --> {loss}")
+    # print(f"The loss of epoch no: {epoch} is --> {loss}")
 
     d_predicted = (2 * (predicted - y_train)) /len(y_train)
 
@@ -99,9 +105,19 @@ for epoch in range (1,2001):
     w1_gradient = X_train_scaled.T @ dA1
     b1_gradient = np.sum(dA1, axis=0)
 
-    # =====================
-    # UPDATE WEIGHTS
-    # =====================
+    if epoch % 1000 == 0:
+        print("Epoch:", epoch)
+        print("Loss:", loss)
+        print("W1 gradient:", np.linalg.norm(w1_gradient))
+        print("W2 gradient:", np.linalg.norm(w2_gradient))
+        print("W3 gradient:", np.linalg.norm(w3_gradient))
+        print("A1 active:", np.mean(A1 > 0))
+        print("A2 active:", np.mean(A2 > 0))
+        print()
+
+    # ==========================
+    # UPDATE WEIGHTS AND BIAS
+    # ==========================
 
     # Gradient Descent
     W3 = W3 - learning_rate * w3_gradient
@@ -112,7 +128,34 @@ for epoch in range (1,2001):
 
     W1 = W1 - learning_rate * w1_gradient
     b1 = b1 - learning_rate * b1_gradient
-    
+
+
+# =========================
+# TESTING
+# =========================
+
+A1 = X_test_scaled @ W1 + b1
+output1 = relu(A1)
+
+A2 = output1 @ W2 + b2
+output2 = relu(A2)
+
+predicted_test = output2 @ W3 + b3
+
+test_loss = np.mean((predicted_test - y_test) ** 2)
+
+print("Test MSE:", test_loss)
+print("Test RMSE:", np.sqrt(test_loss))
+
+for i in range(10):
+    print(
+        "Actual:", y_test[i][0],
+        "Predicted:", predicted_test[i][0]
+    )
+
+
+
+
 
 
 
