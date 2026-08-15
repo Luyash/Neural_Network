@@ -67,6 +67,7 @@ for epoch in range (1,2001):
 
     # Loss layer 3:
     loss = np.mean((predicted - y_train) ** 2)
+    print(f"The loss of epoch no: {epoch} is --> {loss}")
 
     d_predicted = (2 * (predicted - y_train)) /len(y_train)
 
@@ -86,8 +87,8 @@ for epoch in range (1,2001):
     # Relu
     dA2 = doutput2 * (A2 > 0)
      
-    dW2 = output1.T @ dA2
-    db2 = np.sum(dA2, axis=0)
+    w2_gradient = output1.T @ dA2
+    b2_gradient = np.sum(dA2, axis=0)
 
     # Send gradient backwards to output1
     doutput1 = dA2 @ W2.T
@@ -95,14 +96,25 @@ for epoch in range (1,2001):
     # Layer 1
     dA1 = doutput1 * (A1 > 0)
 
-    dW1 = X_train_scaled.T @ dA1
-    db1 = np.sum(dA1, axis=0)
+    w1_gradient = X_train_scaled.T @ dA1
+    b1_gradient = np.sum(dA1, axis=0)
 
     # =====================
     # UPDATE WEIGHTS
     # =====================
 
-    
+    # Gradient Descent
+    W3 = W3 - learning_rate * w3_gradient
+    b3 = b3 - learning_rate * b3_gradient
+
+    W2 = W2 - learning_rate * w2_gradient
+    b2 = b2 - learning_rate * b2_gradient
+
+    W1 = W1 - learning_rate * w1_gradient
+    b1 = b1 - learning_rate * b1_gradient
+
+
+
 
 
 
