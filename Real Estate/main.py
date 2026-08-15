@@ -44,9 +44,11 @@ b2 = np.zeros(8)
 W3 = np.random.randn(8, 1) * np.sqrt(2 / 8) # This is good for Relu activation function
 b3 = np.zeros(1)
 
+learning_rate = 0.001
+
 # The main loop:
 
-for epoch in range (1,20001):
+for epoch in range (1,5001):
 
     # =====================
     # FORWARD PROPAGATION
@@ -65,7 +67,7 @@ for epoch in range (1,20001):
 
     # Loss layer 3:
     loss = np.mean((predicted - y_train) ** 2)
-    print(f"The loss of epoch no: {epoch} is --> {loss}")
+    # print(f"The loss of epoch no: {epoch} is --> {loss}")
 
     d_predicted = (2 * (predicted - y_train)) /len(y_train)
 
@@ -96,6 +98,16 @@ for epoch in range (1,20001):
 
     w1_gradient = X_train_scaled.T @ dA1
     b1_gradient = np.sum(dA1, axis=0)
+
+    if epoch % 1000 == 0:
+        print("Epoch:", epoch)
+        print("Loss:", loss)
+        print("W1 gradient:", np.linalg.norm(w1_gradient))
+        print("W2 gradient:", np.linalg.norm(w2_gradient))
+        print("W3 gradient:", np.linalg.norm(w3_gradient))
+        print("A1 active:", np.mean(A1 > 0))
+        print("A2 active:", np.mean(A2 > 0))
+        print()
 
     # ==========================
     # UPDATE WEIGHTS AND BIAS
