@@ -49,23 +49,63 @@ learning_rate = 0.01
 # The main loop:
 
 for epoch in range (1,2001):
+
+    # =====================
+    # FORWARD PROPAGATION
+    # =====================
+
     # Layer 1:
     A1 = X_train_scaled @ W1 + b1
-    C1 = relu(A1)
+    output1 = relu(A1)
 
     # Layer 2:
-    A2 = C1 @ W2 +b2
-    C2 = relu(A2)
+    A2 = output1 @ W2 +b2
+    output2 = relu(A2)
 
     # Output:
-    predicted = C2 @ W3 + b3
+    predicted = output2 @ W3 + b3
 
-    # Loss:
+    # Loss layer 3:
     loss = np.mean((predicted - y_train) ** 2)
 
+    d_predicted = (2 * (predicted - y_train)) /len(y_train)
+
+    # =====================
+    # BACKPROPAGATION
+    # =====================
+
     # Gradients:
-    gradient_weight = np.mean(2 * (predicted - y_train) *x)
-    gradient_bias = np.mean(2* (predicted - y_train))
+    # Output Layer:
+    w3_gradient = output2.T @ d_predicted
+    b3_gradient = np.sum(d_predicted, axis=0)
+
+    # Send gradient back to output2:
+    doutput2 = d_predicted @ W3.T
+
+    #Layer2
+    # Relu
+    dA2 = doutput2 * (A2 > 0)
+     
+    dW2 = output1.T @ dA2
+    db2 = np.sum(dA2, axis=0)
+
+    # Send gradient backwards to output1
+    doutput1 = dA2 @ W2.T
+
+    # Layer 1
+    dA1 = doutput1 * (A1 > 0)
+
+    dW1 = X_train_scaled.T @ dA1
+    db1 = np.sum(dA1, axis=0)
+
+    # =====================
+    # UPDATE WEIGHTS
+    # =====================
+
+    
+
+
+
 
 
 
