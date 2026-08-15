@@ -48,7 +48,7 @@ learning_rate = 0.001
 
 # The main loop:
 
-for epoch in range (1,5001):
+for epoch in range (1,20001):
 
     # =====================
     # FORWARD PROPAGATION
@@ -122,6 +122,26 @@ for epoch in range (1,5001):
 
     W1 = W1 - learning_rate * w1_gradient
     b1 = b1 - learning_rate * b1_gradient
+
+
+# =========================
+# TESTING
+# =========================
+
+A1 = X_test_scaled @ W1 + b1
+output1 = relu(A1)
+
+A2 = output1 @ W2 + b2
+output2 = relu(A2)
+
+predicted_test = output2 @ W3 + b3
+
+test_loss = np.mean((predicted_test - y_test) ** 2)
+
+print("Test MSE:", test_loss)
+print("Test RMSE:", np.sqrt(test_loss))
+
+
 
 
 
