@@ -112,7 +112,7 @@ for epoch in range (1,2001):
 
     W1 = W1 - learning_rate * w1_gradient
     b1 = b1 - learning_rate * b1_gradient
-
+    
 
 
 
