@@ -14,6 +14,12 @@ array = data.to_numpy()
 X = array[:, 1:7]
 y = array[:, 7:8]
 
+# Adding randomizer for the input data like biccha biccha bata 80% and 20%
+indices = np.random.permutation(len(X))
+
+X = X[indices]
+y = y[indices]
+
 # Splitting the data into 80% training and 20% test
 split_index = int(len(X) * 0.8)  # Gives 80% vaneko kati ho vanera 
 
@@ -146,7 +152,7 @@ for i in range(10):
         "Actual:", y_test[i][0],
         "Predicted:", predicted_test[i][0]
     )
-    
+
 
 
 
