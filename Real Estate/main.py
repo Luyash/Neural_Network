@@ -141,7 +141,12 @@ test_loss = np.mean((predicted_test - y_test) ** 2)
 print("Test MSE:", test_loss)
 print("Test RMSE:", np.sqrt(test_loss))
 
-
+for i in range(10):
+    print(
+        "Actual:", y_test[i][0],
+        "Predicted:", predicted_test[i][0]
+    )
+    
 
 
 
