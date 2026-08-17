@@ -39,7 +39,6 @@ X_test_scaled = (X_test - train_mean) / train_sd
 
 # Okay now the training stuff below:
 
-
 # Initializing weights and biases:
 W1 = np.random.randn(6, 8) * np.sqrt(2 / 6)  # Random values but around +-1
 b1 = np.zeros(8)
@@ -82,13 +81,11 @@ for epoch in range(2000):
 
         predicted = C2 @ W3 + b3
 
-
         # =====================
         # LOSS
         # =====================
 
         loss = np.mean((predicted - y_batch) ** 2)
-
 
         # =====================
         # BACKPROPAGATION
@@ -111,7 +108,6 @@ for epoch in range(2000):
         dW1 = X_batch.T @ dA1
         db1 = np.sum(dA1, axis=0)
 
-
         # =====================
         # UPDATE WEIGHTS AND BIASES
         # =====================
@@ -129,7 +125,6 @@ for epoch in range(2000):
     # Print epoch loss occasionally
     if epoch % 100 == 0:
         print(f"Epoch {epoch}, Loss: {loss}")
-
 
 # =========================
 # TESTING
@@ -154,7 +149,6 @@ for i in range(10):
         "Predicted:", predicted_test[i][0]
     )
 
-
 # =========================
 # GIVE THE MODEL A NEW HOUSE
 # =========================
@@ -175,6 +169,8 @@ house = np.append(house, stores)
 house = np.append(house, latitude)
 house = np.append(house, longitude)
 
+# Make it a batch containing ONE house
+house = house.reshape(1, -1)
 
 # Use the SAME mean and SD calculated from X_train
 house_scaled = (house - train_mean) / train_sd
@@ -192,19 +188,3 @@ output2 = relu(A2)
 predicted_price = output2 @ W3 + b3
 
 print("Predicted house price:", predicted_price[0, 0])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
