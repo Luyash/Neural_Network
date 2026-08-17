@@ -175,6 +175,8 @@ house = np.append(house, stores)
 house = np.append(house, latitude)
 house = np.append(house, longitude)
 
+# Make it a batch containing ONE house
+house = house.reshape(1, -1)
 
 # Use the SAME mean and SD calculated from X_train
 house_scaled = (house - train_mean) / train_sd
