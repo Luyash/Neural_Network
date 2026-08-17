@@ -161,13 +161,14 @@ for i in range(10):
 
 house = np.array([])
 
-transaction_date = float(input("Enter the last transaction date of the house format --> 2012.5 --> mid of 2012"))
-house_age = float(input("Please enter the House age in years"))
-distance_mrt = float(input("Please enter the distance to the market/mart from the house in meters"))
-stores = int(input("Please enter the number of stores nearby"))
-latitude = float(input("Please enter latitude of the house"))
-longitude = float(input("Please enter the longitude of the house"))
+transaction_date = float(input("Enter the last transaction date of the house format --> 2012.5 --> mid of 2012--> "))
+house_age = float(input("Please enter the House age in years--> "))
+distance_mrt = float(input("Please enter the distance to the market/mart from the house in meters--> "))
+stores = int(input("Please enter the number of stores nearby--> "))
+latitude = float(input("Please enter latitude of the house--> "))
+longitude = float(input("Please enter the longitude of the house--> "))
 
+house = np.append(house, transaction_date)
 house = np.append(house, house_age)
 house = np.append(house, distance_mrt)
 house = np.append(house, stores)
