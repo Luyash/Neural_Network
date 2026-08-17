@@ -155,7 +155,43 @@ for i in range(10):
     )
 
 
+# =========================
+# GIVE THE MODEL A NEW HOUSE
+# =========================
 
+house = np.array([[
+    2012.5,    # transaction date
+    15.0,      # house age
+    500.0,     # distance to MRT
+    5.0,       # number of stores
+    24.98,     # latitude
+    121.54     # longitude
+]])
+
+transaction_date = int(input("Enter the last transaction date of the house format --> 2012.5 --> mid of 2012"))
+house_age = int(input("Please enter the House age in years"))
+distance_mrt = int(input("Please enter the distance to the market/mart from the house in meters"))
+stores = int(input("Please enter the number of stores nearby"))
+latitude = int(input("Please enter latitude of the house"))
+longitude = int(input("Please enter the longitude of the house"))
+
+
+# Use the SAME mean and SD calculated from X_train
+house_scaled = (house - train_mean) / train_sd
+
+# =========================
+# FORWARD PASS
+# =========================
+
+A1 = house_scaled @ W1 + b1
+output1 = relu(A1)
+
+A2 = output1 @ W2 + b2
+output2 = relu(A2)
+
+predicted_price = output2 @ W3 + b3
+
+print("Predicted house price:", predicted_price[0, 0])
 
 
 
