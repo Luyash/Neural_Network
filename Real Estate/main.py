@@ -51,83 +51,84 @@ W3 = np.random.randn(8, 1) * np.sqrt(2 / 8) # This is good for Relu activation f
 b3 = np.zeros(1)
 
 learning_rate = 0.001
+mini_batch = 32
 
 # The main loop:
 
-for epoch in range (1,20001):
+for epoch in range(2000):
 
-    # =====================
-    # FORWARD PROPAGATION
-    # =====================
+    # Shuffle training data
+    indices = np.random.permutation(len(X_train_scaled))
+    X_shuffled = X_train_scaled[indices]
+    y_shuffled = y_train[indices]
 
-    # Layer 1:
-    A1 = X_train_scaled @ W1 + b1
-    output1 = relu(A1)
+    # Go through mini-batches
+    for start in range(0, len(X_train_scaled), batch_size):
 
-    # Layer 2:
-    A2 = output1 @ W2 +b2
-    output2 = relu(A2)
+        end = start + batch_size
 
-    # Output:
-    predicted = output2 @ W3 + b3
+        X_batch = X_shuffled[start:end]
+        y_batch = y_shuffled[start:end]
 
-    # Loss layer 3:
-    loss = np.mean((predicted - y_train) ** 2)
-    # print(f"The loss of epoch no: {epoch} is --> {loss}")
+        # =====================
+        # FORWARD PASS
+        # =====================
 
-    d_predicted = (2 * (predicted - y_train)) /len(y_train)
+        A1 = X_batch @ W1 + b1
+        C1 = relu(A1)
 
-    # =====================
-    # BACKPROPAGATION
-    # =====================
+        A2 = C1 @ W2 + b2
+        C2 = relu(A2)
 
-    # Gradients:
-    # Output Layer:
-    w3_gradient = output2.T @ d_predicted
-    b3_gradient = np.sum(d_predicted, axis=0)
+        predicted = C2 @ W3 + b3
 
-    # Send gradient back to output2:
-    doutput2 = d_predicted @ W3.T
 
-    #Layer2
-    # Relu
-    dA2 = doutput2 * (A2 > 0)
-     
-    w2_gradient = output1.T @ dA2
-    b2_gradient = np.sum(dA2, axis=0)
+        # =====================
+        # LOSS
+        # =====================
 
-    # Send gradient backwards to output1
-    doutput1 = dA2 @ W2.T
+        loss = np.mean((predicted - y_batch) ** 2)
 
-    # Layer 1
-    dA1 = doutput1 * (A1 > 0)
 
-    w1_gradient = X_train_scaled.T @ dA1
-    b1_gradient = np.sum(dA1, axis=0)
+        # =====================
+        # BACKPROPAGATION
+        # =====================
 
-    if epoch % 1000 == 0:
-        print("Epoch:", epoch)
-        print("Loss:", loss)
-        print("W1 gradient:", np.linalg.norm(w1_gradient))
-        print("W2 gradient:", np.linalg.norm(w2_gradient))
-        print("W3 gradient:", np.linalg.norm(w3_gradient))
-        print("A1 active:", np.mean(A1 > 0))
-        print("A2 active:", np.mean(A2 > 0))
-        print()
+        d_predicted = 2 * (predicted - y_batch) / y_batch.shape[0]
 
-    # ==========================
-    # UPDATE WEIGHTS AND BIAS
-    # ==========================
+        dW3 = C2.T @ d_predicted
+        db3 = np.sum(d_predicted, axis=0)
 
-    # Gradient Descent
-    W3 = W3 - learning_rate * w3_gradient
-    b3 = b3 - learning_rate * b3_gradient
+        dC2 = d_predicted @ W3.T
+        dA2 = dC2 * (A2 > 0)
 
-    W2 = W2 - learning_rate * w2_gradient
-    b2 = b2 - learning_rate * b2_gradient
+        dW2 = C1.T @ dA2
+        db2 = np.sum(dA2, axis=0)
 
-    W1 = W1 - learning_rate * w1_gradient
-    b1 = b1 - learning_rate * b1_gradient
+        dC1 = dA2 @ W2.T
+        dA1 = dC1 * (A1 > 0)
+
+        dW1 = X_batch.T @ dA1
+        db1 = np.sum(dA1, axis=0)
+
+
+        # =====================
+        # UPDATE WEIGHTS AND BIASES
+        # =====================
+
+        W3 -= learning_rate * dW3
+        b3 -= learning_rate * db3
+
+        W2 -= learning_rate * dW2
+        b2 -= learning_rate * db2
+
+        W1 -= learning_rate * dW1
+        b1 -= learning_rate * db1
+
+
+    # Print epoch loss occasionally
+    if epoch % 100 == 0:
+        print(f"Epoch {epoch}, Loss: {loss}")
 
 
 # =========================
