@@ -63,9 +63,9 @@ for epoch in range(2000):
     y_shuffled = y_train[indices]
 
     # Go through mini-batches
-    for start in range(0, len(X_train_scaled), batch_size):
+    for start in range(0, len(X_train_scaled), mini_batch):
 
-        end = start + batch_size
+        end = start + mini_batch
 
         X_batch = X_shuffled[start:end]
         y_batch = y_shuffled[start:end]
