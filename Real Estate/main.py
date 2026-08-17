@@ -159,14 +159,7 @@ for i in range(10):
 # GIVE THE MODEL A NEW HOUSE
 # =========================
 
-house = np.array([[
-    2012.5,    # transaction date
-    15.0,      # house age
-    500.0,     # distance to MRT
-    5.0,       # number of stores
-    24.98,     # latitude
-    121.54     # longitude
-]])
+house = np.array([])
 
 transaction_date = int(input("Enter the last transaction date of the house format --> 2012.5 --> mid of 2012"))
 house_age = int(input("Please enter the House age in years"))
@@ -174,6 +167,12 @@ distance_mrt = int(input("Please enter the distance to the market/mart from the 
 stores = int(input("Please enter the number of stores nearby"))
 latitude = int(input("Please enter latitude of the house"))
 longitude = int(input("Please enter the longitude of the house"))
+
+house = np.append(house, house_age)
+house = np.append(house, distance_mrt)
+house = np.append(house, stores)
+house = np.append(house, latitude)
+house = np.append(house, longitude)
 
 
 # Use the SAME mean and SD calculated from X_train
