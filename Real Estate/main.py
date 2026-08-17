@@ -145,14 +145,16 @@ predicted_test = output2 @ W3 + b3
 
 test_loss = np.mean((predicted_test - y_test) ** 2)
 
-print("Test MSE:", test_loss)
-print("Test RMSE:", np.sqrt(test_loss))
+print("Test MSE:", test_loss)   # Mean Squared Error kati error xa vanxa
+print("Test RMSE:", np.sqrt(test_loss))  # Root mean squared error kati unit error xa ta in terms of actual data (after standardaziation)
 
 for i in range(10):
     print(
         "Actual:", y_test[i][0],
         "Predicted:", predicted_test[i][0]
     )
+
+
 
 
 
