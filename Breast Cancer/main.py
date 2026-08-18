@@ -43,15 +43,15 @@ X_test_scaled = (X_test - train_mean) / train_sd
 # Now the actual fun part:
 
 # Initializing weights and biases:
-W1 = np.random.randn(30, 16) * np.sqrt(2 / 16)  # Random values but around +-1
+W1 = np.random.randn(30, 16) * np.sqrt(2 / 30)  # Random values but around +-1
 b1 = np.zeros(16)
 
-W2 = np.random.randn(16, 8) * np.sqrt(2 / 8) # This kind of initialization is called He Initialization This is good for Relu activation function
+W2 = np.random.randn(16, 8) * np.sqrt(2 / 16) # This kind of initialization is called He Initialization This is good for Relu activation function
 b2 = np.zeros(8)
 
 W3 = np.random.randn(8, 1) # No He initialization here because aaba Sigmoid lai dine not ReLu rakhda nee kei huna chhai hudaina  
 b3 = np.zeros(1)
 
 learning_rate = 0.001
-mini_batch = 32
+batch_size = 32
 
