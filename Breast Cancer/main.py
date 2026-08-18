@@ -38,3 +38,10 @@ train_sd = X_train.std(axis=0)
 # Standardize
 X_train_scaled = (X_train - train_mean) / train_sd
 X_test_scaled = (X_test - train_mean) / train_sd
+
+
+# Now the actual fun part:
+
+# Main Training:
+
+
