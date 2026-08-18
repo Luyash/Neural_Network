@@ -11,3 +11,9 @@ data = np.genfromtxt(
     encoding="utf-8"
 )
 
+# Getting data Inputs and Output:
+X = data[:, 2:32]   # columns 2 through 31 → 30 inputs
+
+y = data[:, 1:2]    # column 1 → diagnosis
+
+
