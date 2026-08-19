@@ -1,5 +1,6 @@
 import zipfile
 import numpy as np
+from functions import *
 
 with zipfile.ZipFile("breast+cancer+wisconsin+diagnostic.zip", "r") as zip_file:
     zip_file.extract("wdbc.data")
@@ -61,5 +62,5 @@ for epoch in range (1,20000,1):
 
     # Forward Propagation:
     intermediate_output1 = X_train_scaled @ W1 + b1
-    
+
 
