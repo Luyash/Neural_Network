@@ -46,7 +46,7 @@ for epoch in range(1, 801):
     w2 = w2 - learning_rate * w2_gradient
     b = b - learning_rate * b_gradient
 
-print()
+
 print("Prediction is completed")
 print("="*70)
 print()
