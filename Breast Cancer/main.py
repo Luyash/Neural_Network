@@ -74,6 +74,9 @@ for epoch in range (1,20000,1):
     intermediate_output3 = output_2 @ W3 + b3
     predicted = sigmoid(intermediate_output3)
 
+    # Loss for the predicted values:
+    
+
 
 
 
