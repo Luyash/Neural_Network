@@ -80,8 +80,11 @@ for epoch in range (1,20000,1):
     # =====================
     # BACKPROPAGATION
     # =====================
+
     d_predicted = derivative_sigmoid(predicted)
+
     
+
 
 
 
