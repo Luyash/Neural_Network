@@ -29,3 +29,7 @@ def BCE(actual, predicted):
         total_loss += loss
 
     return total_loss / len(actual) # Average returning
+
+def derivative_sigmoid(x):
+    derivative = sigmoid(x) * (1 - sigmoid(x) )
+    return derivative
