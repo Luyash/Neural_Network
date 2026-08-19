@@ -19,6 +19,13 @@ def sigmoid(x):
 
 # Binary Cross Entropy Loss Function (BCE):
 # Used when outputs are 2 loke 0 and 1 or yes and no type
-def BCE(actual , predicted):
-    loss = -(actual * math.log(predicted) + (1 - actual) * math.log(1 - predicted) )
-    return loss
+def BCE(actual, predicted):
+
+    total_loss = 0
+
+    for i in range(len(actual)):
+        loss = -(actual[i] * math.log(predicted[i]) +(1 - actual[i]) * math.log(1 - predicted[i]))
+
+        total_loss += loss
+
+    return total_loss / len(actual) # Average returning

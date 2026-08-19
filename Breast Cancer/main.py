@@ -75,6 +75,7 @@ for epoch in range (1,20000,1):
     predicted = sigmoid(intermediate_output3)
 
     # Loss for the predicted values:
+    loss = BCE(y_train , predicted)
     
 
 
