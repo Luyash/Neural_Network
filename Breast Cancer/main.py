@@ -58,5 +58,8 @@ batch_size = 32
 # The main loop
 
 for epoch in range (1,20000,1):
+
+    # Forward Propagation:
+    intermediate_output1 = X_train_scaled @ W1 + b1
     
 
