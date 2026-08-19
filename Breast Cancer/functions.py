@@ -3,7 +3,10 @@ import math
 
 
 def relu(x):
-    return np.maximum(0, x)
+    if x <= 0:
+        return 0
+    else:
+        return x
 
 def sigmoid(x):
     y = 1 + math.exp(-x)
