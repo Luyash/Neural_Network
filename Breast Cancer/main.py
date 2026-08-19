@@ -34,7 +34,7 @@ y_test = y[split_index:]   # Remaining 20%
 # Calculate mean, SD for Standardization:
 train_mean = X_train.mean(axis=0)
 train_sd = X_train.std(axis=0)
-
+    
 # Standardize
 X_train_scaled = (X_train - train_mean) / train_sd
 X_test_scaled = (X_test - train_mean) / train_sd
@@ -49,9 +49,14 @@ b1 = np.zeros(16)
 W2 = np.random.randn(16, 8) * np.sqrt(2 / 16) # This kind of initialization is called He Initialization This is good for Relu activation function
 b2 = np.zeros(8)
 
-W3 = np.random.randn(8, 1) # No He initialization here because aaba Sigmoid lai dine not ReLu rakhda nee kei huna chhai hudaina  
+W3 = np.random.randn(8, 1) # No He initialization here because aaba Sigmoid lai dine not ReLu; rakhda nee kei huna chhai hudaina huna chhai 
 b3 = np.zeros(1)
 
 learning_rate = 0.001
 batch_size = 32
+
+# The main loop
+
+for epoch in range (1,20000,1):
+    
 
