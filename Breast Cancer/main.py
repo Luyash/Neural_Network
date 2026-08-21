@@ -82,6 +82,7 @@ for epoch in range (1,20000,1):
     # =====================
 
     d_predicted = derivative_BCE(y_train, predicted)  # dloss/ dpredicted
+    
 
 
 
