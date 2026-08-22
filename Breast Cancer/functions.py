@@ -44,7 +44,4 @@ def derivative_BCE(actual, predicted):
     return d_predicted
 
 def derivative_reLu(x):
-    if(x<= 0):
-        return 0
-    else:
-        return 1
+    return (x > 0).astype(float)
