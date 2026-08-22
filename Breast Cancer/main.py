@@ -77,7 +77,7 @@ for epoch in range (1,20000,1):
     # Loss for the predicted values:
     loss = BCE(y_train , predicted)
 
-   # =====================
+   # ======================
     # BACKPROPAGATION
     # =====================
 
@@ -112,6 +112,20 @@ for epoch in range (1,20000,1):
     db1 = np.sum(d_intermediate_output1, axis=0)
 
 
+    # Gradient Descent
+    # ==============================
+    # UPDATING WEIGHTS AND BIASES
+    # ==============================
+
+    W3 = W3 - learning_rate * dW3
+    b3 = b3 - learning_rate * db3
+
+    W2 = W2 - learning_rate * dW2
+    b2 = b2 - learning_rate * db2
+
+    W1 = W1 - learning_rate * dW1
+    b1 - b1 - learning_rate * db1
+    
     
 
 
