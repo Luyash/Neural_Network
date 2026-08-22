@@ -77,26 +77,39 @@ for epoch in range (1,20000,1):
     # Loss for the predicted values:
     loss = BCE(y_train , predicted)
 
-    # =====================
+   # =====================
     # BACKPROPAGATION
     # =====================
 
-    d_predicted = derivative_BCE(y_train, predicted)  # dloss/ dpredicted
+    # Output layer
+    # BCE + Sigmoid simplifies to:
+    d_intermediate_output3 = predicted - y_train
 
-    d_sigmoid3 = derivative_sigmoid(intermediate_output3)
+    # Gradients for W3 and b3
+    dW3 = output_2.T @ d_intermediate_output3
+    db3 = np.sum(d_intermediate_output3, axis=0)
 
-    dW3 = intermediate_output3.T @ d_predicted
-    db3 = np.sum(d_predicted , axis = 0)
 
-    d_output2 = derivative_reLu(output_2)
+    # Send gradient backwards through W3
+    d_output2 = d_intermediate_output3 @ W3.T
 
-    dW2 = intermediate_output2.T @ d_output2
-    db2 = np.sum(d_output2 , axis = 0)
+    # ReLU derivative
+    d_intermediate_output2 = d_output2 * derivative_reLu(intermediate_output2)
 
-    d_output1 = derivative_reLu(output_1)
+    # Gradients for W2 and b2
+    dW2 = output_1.T @ d_intermediate_output2
+    db2 = np.sum(d_intermediate_output2, axis=0)
 
-    dW1 = intermediate_output1.T @ d_output1
-    db1 = np.sum(d_output1 , axis = 0)
+
+    # Send gradient backwards through W2
+    d_output1 = d_intermediate_output2 @ W2.T
+
+    # ReLU derivative
+    d_intermediate_output1 = d_output1 * derivative_reLu(intermediate_output1)
+
+    # Gradients for W1 and b1
+    dW1 = X_train_scaled.T @ d_intermediate_output1
+    db1 = np.sum(d_intermediate_output1, axis=0)
 
 
     
