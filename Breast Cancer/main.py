@@ -134,19 +134,19 @@ for epoch in range (1,20000,1):
 # =================
 
 # Layer 1
-intermediate_output1 = X_test_scaled @ W1 + b1
+intermediate_output1 = X_train_scaled @ W1 + b1
 output_1 = relu(intermediate_output1)
 
 # Layer 2
 intermediate_output2 = output_1 @ W2 + b2
 output_2 = relu(intermediate_output2)
 
-#Layer 3 
+# Layer 3
 intermediate_output3 = output_2 @ W3 + b3
 predicted = sigmoid(intermediate_output3)
 
-# Loss for the predicted values:
-loss = BCE(y_train , predicted)
+# Training loss
+loss = BCE(y_train, predicted)
 
 print(f"The loss for this network is --> {loss}")
     

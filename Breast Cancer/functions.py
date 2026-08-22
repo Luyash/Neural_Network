@@ -18,15 +18,10 @@ def BCE(actual, predicted):
 
     predicted = np.clip(predicted, 1e-15, 1 - 1e-15)
 
-    total_loss = 0
+    loss = -(actual * np.log(predicted) +
+             (1 - actual) * np.log(1 - predicted))
 
-    for i in range(len(actual)):
-        loss = -(actual[i] * np.log(predicted[i]) +
-                 (1 - actual[i]) * np.log(1 - predicted[i]))
-
-        total_loss += loss
-
-    return total_loss / len(actual) # Average returning
+    return np.mean(loss) # Average returning
 
 #==============
 # DERIVATIVES
