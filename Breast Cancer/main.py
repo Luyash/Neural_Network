@@ -82,6 +82,13 @@ for epoch in range (1,20000,1):
     # =====================
 
     d_predicted = derivative_BCE(y_train, predicted)  # dloss/ dpredicted
+
+    d_sigmoid3 = derivative_sigmoid()
+
+    dW3 = intermediate_output3.T @ d_predicted
+    db3 = np.sum(d_predicted , axis = 0)
+
+    d_output2 = 
     
 
 
