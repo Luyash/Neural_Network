@@ -2,20 +2,21 @@ import zipfile
 import numpy as np
 from functions import *
 
-with zipfile.ZipFile("breast+cancer+wisconsin+diagnostic.zip", "r") as zip_file:
+with zipfile.ZipFile(
+    "Breast Cancer/breast+cancer+wisconsin+diagnostic.zip",
+    "r"
+) as zip_file:
     zip_file.extract("wdbc.data")
 
 data = np.genfromtxt(
     "wdbc.data",
     delimiter=",",
-    dtype=None,
-    encoding="utf-8"
+    dtype=str,
 )
 
 # Getting data Inputs and Output:
-X = data[:, 2:32]   # columns 2 through 31 → 30 inputs
-
-y = data[:, 1:2]    # column 1 → diagnosis
+X = data[:, 2:32].astype(float)  # columns 2 through 31 → 30 inputs
+y = np.where(data[:, 1:2] == "M", 1, 0).astype(float)    # column 1 → diagnosis
 
 # Adding randomizer for the input data like biccha biccha bata 80% and 20%
 indices = np.random.permutation(len(X))
@@ -77,7 +78,7 @@ for epoch in range (1,20000,1):
     # Loss for the predicted values:
     loss = BCE(y_train , predicted)
 
-   # ======================
+    # ======================
     # BACKPROPAGATION
     # =====================
 
@@ -133,7 +134,7 @@ for epoch in range (1,20000,1):
 # =================
 
 # Layer 1
-intermediate_output1 = X_train_scaled @ W1 + b1
+intermediate_output1 = X_test_scaled @ W1 + b1
 output_1 = relu(intermediate_output1)
 
 # Layer 2
@@ -146,6 +147,8 @@ predicted = sigmoid(intermediate_output3)
 
 # Loss for the predicted values:
 loss = BCE(y_train , predicted)
+
+print(f"The loss for this network is --> {loss}")
     
 
 

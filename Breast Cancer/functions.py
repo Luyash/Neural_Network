@@ -3,11 +3,8 @@ import math
 
 
 # Relu ---> negative and 0 return 0 natra return input number
-def relu(x):   
-    if x <= 0:
-        return 0
-    else:
-        return x
+def relu(x):
+    return np.maximum(0, x)
 
 
 # Sigmoid function --> y = 1/ ( 1+ e^(-x) )
